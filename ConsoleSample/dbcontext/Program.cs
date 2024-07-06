@@ -110,8 +110,10 @@ if (true)
     {
         Task.Factory.StartNew(() =>
         {
+            //获取到的client对象都是同一个
             var client2 = provider.GetService<ISqlSugarClient>();
             Console.WriteLine($"ContextID:{client2.ContextID}, ThreadID:{Thread.CurrentThread.ManagedThreadId}");
+            //比较结果为True
             Console.WriteLine("match:"+Object.ReferenceEquals(client, client2));
         });
     }
