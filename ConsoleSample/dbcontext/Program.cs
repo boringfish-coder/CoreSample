@@ -11,7 +11,12 @@ service.AddScoped<ISqlSugarClient>(s =>
     {
         ConnectionString = "datasource=demo.db",
         DbType = DbType.Sqlite,
-        IsAutoCloseConnection = true
+        IsAutoCloseConnection = true,
+        MoreSettings = new ConnMoreSettings
+        {
+            DisableWithNoLockWithTran = true,
+            IsWithNoLockQuery = true,
+        }
     },
     db =>
     {
