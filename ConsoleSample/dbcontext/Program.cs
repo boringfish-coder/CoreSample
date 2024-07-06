@@ -85,7 +85,7 @@ if (false)
         Console.WriteLine("回滚后：" + rets.Count);
     }
 }
-
+if(false)
 {
     client.Ado.BeginTran();
     //使用仓储查询
@@ -102,6 +102,19 @@ if (false)
     repo = client.GetSimpleClient<Student>();
     rets = repo.AsQueryable().Where(it => it.Name == "jack2").ToList();
     Console.WriteLine("回滚后：" + rets.Count);
+}
+
+if (true)
+{
+    for(var i=0; i<5; i++)
+    {
+        Task.Factory.StartNew(() =>
+        {
+            var client2 = provider.GetService<ISqlSugarClient>();
+            Console.WriteLine($"ContextID:{client2.ContextID}, ThreadID:{Thread.CurrentThread.ManagedThreadId}");
+            Console.WriteLine("match:"+Object.ReferenceEquals(client, client2));
+        });
+    }
 }
 
 
